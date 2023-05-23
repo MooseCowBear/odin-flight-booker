@@ -1,17 +1,28 @@
 <h1>Flights#index</h1>
 <p>Find me in app/views/flights/index.html.erb</p>
 
-<%= form_with url: "/flights", method: :get do |f| %>
-  <%= f.label :departing_airport_id, "Departing From:" %>
-  <%= f.select(:departing_airport_id, @airport_options) %>
+<%= form_tag flights_index_path, method: :get do %>
+  <%= label_tag :departing_airport_id, "Departing From:" %>
+  <%= select_tag(:departing_airport_id, options_for_select(@airport_options)) %>
 
-  <%= f.label :arriving_airport_id, "Arriving At:" %>
-  <%= f.select(:arriving_airport_id, @airport_options) %>
+  <%= label_tag :arriving_airport_id, "Arriving At:" %>
+  <%= select_tag(:arriving_airport_id, options_for_select(@airport_options)) %>
 
-  <%= f.label :num_passengers, "Number of Passengers:" %>
-  <%= f.select :num_passengers, options_for_select(1..4) %>
+  <%= label_tag :num_passengers, "Number of Passengers:" %>
+  <%= select_tag(:num_passengers, options_for_select(1..4)) %>
 
-  <%= f.label :travel_date, "Date:" %>
-  <%= f.select :travel_date, ((Date.today)...(Date.today + 2.months)).map{ |date| [date.strftime("%B %d %Y"), date] }, {} %>
+  <%= label_tag :travel_date, "Date:" %>
+  <%= select_tag(:travel_date, options_for_select((Date.today...(Date.today + 2.months)).map{ |date| [date.strftime("%B %d %Y"), date] })) %>
+
+  <%= submit_tag "Search", :name => nil %>
 <% end %>
 
+<ul>
+  <% @flights.each do |flight| %>
+    <li>
+      <p>arriving at: <%= flight.arriving_at.code %></p>
+      <p>departing: <%= flight.departing_from.code %></p>
+    </li>
+
+  <% end %>
+</ul>

@@ -47,12 +47,12 @@ Airport.create!([{
   code: "CDG"
 }])
 
-pairs = (1..10).to_a.combination(2).to_a
-start_dates = [DateTime.new(2023,6,20,7,30,0), DateTime.new(2023,6,21,12,00,0), DateTime.new(2023,6,22,16,30,0)]
+pairs = (1..10).to_a.permutation(2).to_a
+start_dates = [DateTime.new(2023,5,23,7,30,0), DateTime.new(2023,5,23,12,00,0), DateTime.new(2023,5,23,16,30,0)]
 
 pairs.each do |p|
   start_dates.each do |s|
-    10.times do |t|
+    30.times do |t|
       dur = Random.new.rand(140..1080)
       depart = p[0]
       dest = p[1]
