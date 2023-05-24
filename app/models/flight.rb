@@ -4,11 +4,10 @@ class Flight < ApplicationRecord
 
   validates :departing_from_id, :arriving_at_id, :departure_time, presence: true
 
-  def self.search(departs, arrives, num, date)
-    if departs && arrives && num && date
-      #right now num does nothing....
-      date = date.to_datetime
-      @flights = Flight.where('departing_from_id = ?', departs).where('arriving_at_id = ?', arrives).where('departure_time BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)
+  def self.search(search_params)
+    unless search_params.empty?
+      date = search_params[:travel_date].to_datetime
+      @flights = Flight.where('departing_from_id = ?', search_params[:departing_airport_id]).where('arriving_at_id = ?', search_params[:arriving_airport_id]).where('departure_time BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)
     else
       @flights = [] #want empty...
     end
