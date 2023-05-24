@@ -16,12 +16,14 @@
   <%= submit_tag "Search", :name => nil %>
 <% end %>
 
-<ul>
-  <% @flights.each do |flight| %>
-    <li>
-      <p>arriving at: <%= flight.arriving_at.code %></p>
-      <p>departing: <%= flight.departing_from.code %></p>
-    </li>
 
+<%= form_with model: @booking, method: :get do |form| %>
+  <%= form.hidden_field :num_tickets, value: :num_passengers %>
+  <% @flights.each do |flight| %>
+    <div class="radio__wrapper">
+      <%= radio_button_tag :flight_id, flight.id %> 
+      <%= label_tag "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}", 
+      "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}" %>
+    </div>
   <% end %>
-</ul>
+<% end %>

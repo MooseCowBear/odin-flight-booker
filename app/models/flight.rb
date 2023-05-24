@@ -14,10 +14,11 @@ class Flight < ApplicationRecord
     end
   end
 
-  def self.flight_dates
-  end
-
   def date_formatted
     departure_time.strftime("%B %d %Y")
+  end
+
+  def time_formatted
+    departure_time.strftime("%A %b %e, %Y at %l:%M %P")
   end
 end
