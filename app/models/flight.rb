@@ -2,7 +2,7 @@ class Flight < ApplicationRecord
   belongs_to :departing_from, class_name: 'Airport'
   belongs_to :arriving_at, class_name: 'Airport'
 
-  has_many :bookings, foreign_key: :flight_id, dependent: :destroy
+  has_many :bookings, foreign_key: :flight_id, dependent: :destroy, inverse_of: :flight
   has_many :passengers, through: :bookings
 
   validates :departing_from_id, :arriving_at_id, :departure_time, presence: true

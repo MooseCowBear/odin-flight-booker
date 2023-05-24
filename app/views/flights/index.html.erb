@@ -17,8 +17,8 @@
 <% end %>
 
 
-<%= form_with model: @booking, method: :get do |form| %>
-  <%= form.hidden_field :num_tickets, value: :num_passengers %>
+<%= form_with url: "/bookings/new", method: :get do |form| %>
+  <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
   <% @flights.each do |flight| %>
     <div class="radio__wrapper">
       <%= radio_button_tag :flight_id, flight.id %> 
@@ -26,4 +26,5 @@
       "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}" %>
     </div>
   <% end %>
+  <%= submit_tag "Book it", :name => nil %>
 <% end %>
