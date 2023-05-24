@@ -10,10 +10,14 @@ class Flight < ApplicationRecord
       date = date.to_datetime
       @flights = Flight.where('departing_from_id = ?', departs).where('arriving_at_id = ?', arrives).where('departure_time BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)
     else
-      @flights = Flight.all #want empty...
+      @flights = [] #want empty...
     end
   end
 
   def self.flight_dates
+  end
+
+  def date_formatted
+    departure_time.strftime("%B %d %Y")
   end
 end
