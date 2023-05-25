@@ -1,3 +1,4 @@
+<div class="page__wrapper">
 <h2>Find a Flight</h2>
 
 <%= form_tag flights_index_path, method: :get do %>
@@ -29,15 +30,21 @@
 <% end %>
 
 <% unless @flights.empty? %>
-  <%= form_with url: "/bookings/new", method: :get do |form| %>
-    <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
-    <% @flights.each do |flight| %>
-      <div class="radio__wrapper">
-        <%= radio_button_tag :flight_id, flight.id %> 
-        <%= label_tag "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}", 
-        "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}" %>
+  <div class="flights">
+    <h4>Available Flights:</h4>
+    <%= form_with url: "/bookings/new", method: :get do |form| %>
+      <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
+      <div class="flight__selection">
+        <% @flights.each do |flight| %>
+          <div class="radio__wrapper">
+            <%= radio_button_tag :flight_id, flight.id %> 
+            <%= label_tag "flight_id_#{flight.id}", 
+            "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}, flight time: #{flight.duration_formatted}" %>
+          </div>
+        <% end %>
       </div>
+      <%= submit_tag "Book it", :name => nil %>
     <% end %>
-    <%= submit_tag "Book it", :name => nil %>
-  <% end %>
+  </div>
 <% end %>
+</div>

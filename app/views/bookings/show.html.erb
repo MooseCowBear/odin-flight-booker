@@ -1,1 +1,14 @@
-<h2>Booking Details</h2>
+<div class="page__wrapper">
+  <h2>Booking Details: </h2>
+
+  <div class="passengers-info__wrapper">
+    <% @booking.passengers.each_with_index do |p, i| %>
+      <div class="passenger-info">
+        <h4>Passenger <%= i + 1%>:</h4>
+        <%= p.name %>
+        <%= p.email %>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Find Another Flight", root_path %>
+</div>

@@ -1,17 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Quicksand:wght@300;400&display=swap');
 
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p, 
+section,
+article {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* end reset */
+
 :root {
   --select-border: #777;
-  --select-focus: blue;
+  --select-focus: rgba(4,126,128,1);
   --select-arrow: var(--select-border);
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;;
+  font-family: 'Quicksand', sans-serif;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(rgba(4,126,128,1), rgba(34,193,195,1), rgba(253,187,45,1));
 }
 
 h1, h2, h3, h4 {
   font-family: 'Oswald', sans-serif;
+}
+
+.logo { 
+  height: 3rem;
+}
+
+.title__wrapper {
+  display: flex;
 }
 
 select {
@@ -31,7 +102,6 @@ select {
 .select {
   width: 100%;
   min-width: 15ch;
-  max-width: 30ch;
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
@@ -68,4 +138,47 @@ select:focus + .focus {
   bottom: -1px;
   border: 2px solid var(--select-focus);
   border-radius: inherit;
+}
+
+input[type="submit"] {
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  background-color: transparent;
+  text-transform: lowercase;
+  font-weight: 300;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flights {
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flight__selection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.page__wrapper {
+  display: grid;
+  grid-template-columns: minmax(300px, max-content);
+  justify-content: center;
+  gap: 1rem;
+}
+
+h4 {
+  text-transform: lowercase;
 }
