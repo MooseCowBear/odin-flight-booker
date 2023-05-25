@@ -12,9 +12,13 @@ class BookingsController < ApplicationController
       flash[:notice] = "Your flight has been booked!"
       redirect_to root_path
     else
-      flash.now[:error] = "Something went wrong"
+      flash.now[:alert] = "Something went wrong."
       render "new"
     end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   private
