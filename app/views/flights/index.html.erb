@@ -1,30 +1,43 @@
-<h1>Flights</h1>
+<h2>Find a Flight</h2>
 
 <%= form_tag flights_index_path, method: :get do %>
   <%= label_tag :departing_airport_id, "Departing From:" %>
-  <%= select_tag(:departing_airport_id, options_for_select(@airport_options, params[:departing_airport_id])) %>
+  <div class="select">
+    <%= select_tag(:departing_airport_id, options_for_select(@airport_options, params[:departing_airport_id])) %>
+    <span class="focus"></span>
+  </div>
 
   <%= label_tag :arriving_airport_id, "Arriving At:" %>
-  <%= select_tag(:arriving_airport_id, options_for_select(@airport_options, params[:arriving_airport_id])) %>
+  <div class="select">
+    <%= select_tag(:arriving_airport_id, options_for_select(@airport_options, params[:arriving_airport_id])) %>
+    <span class="focus"></span>
+  </div>
 
   <%= label_tag :num_passengers, "Number of Passengers:" %>
-  <%= select_tag(:num_passengers, options_for_select(1..4, params[:num_passengers])) %>
+  <div class="select">
+    <%= select_tag(:num_passengers, options_for_select(1..4, params[:num_passengers])) %>
+    <span class="focus"></span>
+  </div>
 
   <%= label_tag :travel_date, "Date:" %>
-  <%= select_tag(:travel_date, options_for_select(@date_options, params[:travel_date])) %>
+  <div class="select">
+    <%= select_tag(:travel_date, options_for_select(@date_options, params[:travel_date])) %>
+    <span class="focus"></span>
+  </div>
 
   <%= submit_tag "Search", :name => nil %>
 <% end %>
 
-
-<%= form_with url: "/bookings/new", method: :get do |form| %>
-  <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
-  <% @flights.each do |flight| %>
-    <div class="radio__wrapper">
-      <%= radio_button_tag :flight_id, flight.id %> 
-      <%= label_tag "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}", 
-      "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}" %>
-    </div>
+<% unless @flights.empty? %>
+  <%= form_with url: "/bookings/new", method: :get do |form| %>
+    <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
+    <% @flights.each do |flight| %>
+      <div class="radio__wrapper">
+        <%= radio_button_tag :flight_id, flight.id %> 
+        <%= label_tag "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}", 
+        "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}" %>
+      </div>
+    <% end %>
+    <%= submit_tag "Book it", :name => nil %>
   <% end %>
-  <%= submit_tag "Book it", :name => nil %>
 <% end %>
