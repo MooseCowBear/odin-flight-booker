@@ -3,38 +3,17 @@
   <span><%= "#{@flight.departing_from.code} - #{@flight.arriving_at.code} on #{@flight.time_formatted}" %></span>
 </p>
 
-<h3><%= @num %></h3>
-
-<%= form_with url: "/bookings/new" do |f| %>
-  <h4>Passenger Info</h4>
-    <%= f.hidden_field :flight_id, value: @flight.id %>
-  
-    <div>
-      <%= @num.times do |i| %>
-        <%= f.fields_for :passenger do |passenger_builder| %>
-              <%= passenger_builder.label :name, "Name:" %>
-              <%= passenger_builder.text_field :name %>
-       
-              <%= passenger_builder.label :email, "Email:" %>
-              <%= passenger_builder.text_field :email %>
-        <% end %>
-      <% end %>
-    </div>
-  
-  <%= submit_tag "Book it", :name => nil %>
-<% end %>
-
-<p>testing...</p>
-<%= form_with model: @booking, remote: true do |form| %>
+<h3>Please enter passenger information:</h3>
+<%= form_with model: @booking do |form| %>
   <%= form.hidden_field :flight_id, value: @flight.id %>
-  <% @num.times do |i| %>
-    <%= fields_for 'passenger'+[i].to_s do |passenger_builder| %>
-      <%= passenger_builder.label :name, "Name:" %>
-      <%= passenger_builder.text_field :name %>
-     
-      <%= passenger_builder.label :email, "Email:" %>
-      <%= passenger_builder.text_field :email %>
+  
+    <%= form.fields_for :passengers do |sub_form| %>
+      <%= sub_form.label :name, "Name:" %>
+      <%= sub_form.text_field :name %>
+      
+      <%= sub_form.label :email, "Email:" %>
+      <%= sub_form.text_field :email %>
     <% end %>
-  <% end %>
-  <%= form.submit "Submit", :name => nil %>
+  
+  <%= form.submit "Book it", :name => nil %>
 <% end %>

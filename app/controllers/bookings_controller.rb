@@ -3,10 +3,18 @@ class BookingsController < ApplicationController
     @flight = Flight.find(search_params[:flight_id])
     @num = search_params[:num_tickets].to_i
     @booking = Booking.new
+    @num.times { @booking.passengers.build }
   end
 
   def create
-    
+    @booking = Booking.new(booking_params)
+    if @booking.save
+      flash[:notice] = "Your flight has been booked!"
+      redirect_to root_path
+    else
+      flash.now[:error] = "Something went wrong"
+      render "new"
+    end
   end
 
   private
@@ -16,6 +24,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:flight_id, passenger_attributes: [:name, :email])
+    params.require(:booking).permit(:flight_id, passengers_attributes: [:name, :email])
   end
 end
