@@ -47,6 +47,8 @@
       <% end %>
     </div>
   <% else %>
-    <p>No matching flights were found.</p>
+    <% if params[:travel_date] %>
+      <p>No matching flights were found.</p>
+    <% end %>
   <% end %>
 </div>
