@@ -11,6 +11,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1>FlightBooker</h1>
+    </header>
+    <main>
+      <div class="flash">
+        <%= notice %>
+        <%= alert %>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>
