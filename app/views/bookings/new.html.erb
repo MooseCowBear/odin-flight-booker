@@ -12,10 +12,10 @@
     
       <%= form.fields_for :passengers do |sub_form| %>
         <div class="passenger__fields">
-          <%= sub_form.label :name, "Name:" %>
-          <%= sub_form.text_field :name %>
+          <%= sub_form.label :name, "Name:"%>
+          <%= sub_form.text_field :name, required: true %>
           <%= sub_form.label :email, "Email:" %>
-          <%= sub_form.text_field :email %>
+          <%= sub_form.text_field :email, required: true %>
         </div>
       <% end %>
     <%= form.submit "Book it", :name => nil %>

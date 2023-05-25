@@ -1,24 +1,11 @@
-# README
+# Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a solution to the Flight Booker project from the Odin Project's Rails path. 
 
-Things you may want to cover:
+## Feautres
 
-* Ruby version
+A nested form that makes use of #accepts_nested_attributes_for. 
 
-* System dependencies
+## The database
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
