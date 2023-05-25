@@ -48,7 +48,7 @@ Airport.create!([{
 }])
 
 pairs = (1..10).to_a.permutation(2).to_a
-start_dates = [DateTime.new(2023,5,23,7,30,0), DateTime.new(2023,5,23,12,00,0), DateTime.new(2023,5,23,16,30,0)]
+start_dates = [DateTime.now.change({ hour: 7, min: 30 }), DateTime.now.change({ hour: 12, min: 00 }), DateTime.now.change({ hour: 16, min: 30 })]
 
 pairs.each do |p|
   start_dates.each do |s|
