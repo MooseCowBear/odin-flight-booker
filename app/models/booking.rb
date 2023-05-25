@@ -1,8 +1,9 @@
 class Booking < ApplicationRecord
   belongs_to :flight
-  has_many :passengers, inverse_of: :booking, dependent: :destroy
+  has_many :passengers, dependent: :destroy
+  validates :passengers, length: {minimum: 1}, presence: true 
 
-  accepts_nested_attributes_for :passengers
+  accepts_nested_attributes_for :passengers, reject_if: lambda {|attributes| attributes['name'].blank? || attributes['email'].blank? }
 
   def annouce_passengers
     num = passengers.count
@@ -11,5 +12,9 @@ class Booking < ApplicationRecord
     else
       "There is one passenger in this booking."
     end
+  end
+
+  def reject_passengers
+    attributes.any?{ |k, v| v[:name].blank? || v[:email].blank? }
   end
 end

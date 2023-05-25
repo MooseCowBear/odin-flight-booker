@@ -8,12 +8,15 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.save
+    if @booking.passengers.size != @booking.num_tickets
+      flash[:alert] = "Each passenger needs a name and an email."
+      redirect_to new_booking_path(:flight_id => params[:booking][:flight_id], :num_tickets => params[:booking][:num_tickets])
+    elsif @booking.save
       flash[:notice] = "Your flight has been booked!"
       redirect_to booking_path(@booking.id)
     else
       flash[:alert] = "Something went wrong."
-      redirect_to new_booking_path(params[:flight_id])
+      redirect_to new_booking_path(:flight_id => params[:booking][:flight_id], :num_tickets => params[:booking][:num_tickets])
     end
   end
 
@@ -28,6 +31,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:flight_id, passengers_attributes: [:name, :email])
+    params.require(:booking).permit(:flight_id, :num_tickets, passengers_attributes: [:name, :email])
   end
 end
