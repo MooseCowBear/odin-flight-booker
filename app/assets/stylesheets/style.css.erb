@@ -59,9 +59,13 @@ a:not([class]) {
 /* end reset */
 
 :root {
-  --select-border: #777;
+  --text: rgb(51, 75, 72);
+  --select-border: var(--text);
   --select-focus: rgba(4,126,128,1);
   --select-arrow: var(--select-border);
+  --background-100: rgba(251, 250, 245, 0.7);
+  --accent: rgba(2, 202, 201, 0.5);
+  --accent-opaque: rgba(2, 202, 201, 0.9);
 }
 
 body {
@@ -70,7 +74,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
   background: linear-gradient(rgba(4,126,128,1), rgba(34,193,195,1), rgba(253,187,45,1));
+  background-image: url(<%= asset_path 'szabo-viktor-28ZbKOWiZfs-unsplash.jpg' %>);
+  background-size: cover;
+  color: var(--text);
 }
 
 h1, h2, h3, h4 {
@@ -79,6 +87,7 @@ h1, h2, h3, h4 {
 
 .logo { 
   height: 3rem;
+  filter: invert(22%) sepia(46%) saturate(282%) hue-rotate(123deg) brightness(98%) contrast(85%);
 }
 
 .title__wrapper {
@@ -108,8 +117,7 @@ select {
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  background-color: transparent;
   display: grid;
   grid-template-areas: "select";
   align-items: center;
@@ -140,15 +148,39 @@ select:focus + .focus {
   border-radius: inherit;
 }
 
-input[type="submit"] {
+input[type="text"] {
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   font-size: 1.25rem;
-  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border: 2px solid var(--select-focus);
+}
+
+input[type="submit"],
+.button {
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
   background-color: transparent;
   text-transform: lowercase;
   font-weight: 300;
+  cursor: pointer;
+}
+
+input[type="submit"]:focus, input[type="submit"]:hover,
+.button:focus, .button:hover {
+  background-color: var(--accent);
+  border: 1px solid transparent;
+}
+
+.button {
+  text-align: center;
 }
 
 form {
@@ -177,8 +209,48 @@ form {
   grid-template-columns: minmax(300px, max-content);
   justify-content: center;
   gap: 1rem;
+  background-color: var(--background-100);
+  border-radius: 0.25em;
+  padding: 1rem;
 }
 
 h4 {
   text-transform: lowercase;
+}
+
+input[type="radio"] {
+  appearance: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  outline: 1px solid var(--accent-opaque);
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--accent-opaque);
+}
+
+input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.radio__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flight-info__wrapper, .passengers-info__wrapper {
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

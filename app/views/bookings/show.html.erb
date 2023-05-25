@@ -1,14 +1,25 @@
 <div class="page__wrapper">
   <h2>Booking Details: </h2>
 
+  <div class="flight-info__wrapper">
+    <h4>Flight Information</h4>
+    <div class="flight-info">
+      <p>Departing from: <%= @booking.flight.departing_from.code %></p>
+      <p>Arriving at: <%= @booking.flight.arriving_at.code %></p>
+      <p>Duration: <%= @booking.flight.duration_formatted %></p>
+      <p>Departure: <%= @booking.flight.time_formatted %></p>
+
+    </div>
+  </div>
+  <%= @booking.annouce_passengers %>
   <div class="passengers-info__wrapper">
     <% @booking.passengers.each_with_index do |p, i| %>
       <div class="passenger-info">
         <h4>Passenger <%= i + 1%>:</h4>
-        <%= p.name %>
-        <%= p.email %>
+        <p>Name: <%= p.name %></p>
+        <p>Email: <%= p.email %></p>
       </div>
     <% end %>
   </div>
-  <%= link_to "Find Another Flight", root_path %>
+  <%= link_to "Find Another Flight", root_path, class: "button" %>
 </div>

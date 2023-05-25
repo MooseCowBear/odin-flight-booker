@@ -12,8 +12,8 @@ class BookingsController < ApplicationController
       flash[:notice] = "Your flight has been booked!"
       redirect_to booking_path(@booking.id)
     else
-      flash.now[:alert] = "Something went wrong."
-      render "new"
+      flash[:alert] = "Something went wrong."
+      redirect_to new_booking_path(params[:flight_id])
     end
   end
 

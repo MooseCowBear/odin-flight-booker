@@ -1,19 +1,21 @@
-<h1>Book It</h1>
-<p>You have chosen:
-  <span><%= "#{@flight.departing_from.code} - #{@flight.arriving_at.code} on #{@flight.time_formatted}" %></span>
-</p>
+<div class="page__wrapper">
+  <h2>Book It</h2>
+  <p>You have chosen:
+    <span><%= "#{@flight.departing_from.code} - #{@flight.arriving_at.code} on #{@flight.time_formatted}" %></span>
+  </p>
 
-<h3>Please enter passenger information:</h3>
-<%= form_with model: @booking do |form| %>
-  <%= form.hidden_field :flight_id, value: @flight.id %>
-  
-    <%= form.fields_for :passengers do |sub_form| %>
-      <%= sub_form.label :name, "Name:" %>
-      <%= sub_form.text_field :name %>
-      
-      <%= sub_form.label :email, "Email:" %>
-      <%= sub_form.text_field :email %>
-    <% end %>
-  
-  <%= form.submit "Book it", :name => nil %>
-<% end %>
+  <h3>Please enter passenger information:</h3>
+  <%= form_with model: @booking do |form| %>
+    <%= form.hidden_field :flight_id, value: @flight.id %>
+    
+      <%= form.fields_for :passengers do |sub_form| %>
+        <%= sub_form.label :name, "Name:" %>
+        <%= sub_form.text_field :name %>
+        
+        <%= sub_form.label :email, "Email:" %>
+        <%= sub_form.text_field :email %>
+      <% end %>
+    
+    <%= form.submit "Book it", :name => nil %>
+  <% end %>
+</div>
