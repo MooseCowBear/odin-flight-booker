@@ -1,50 +1,52 @@
 <div class="page__wrapper">
-<h2>Find a Flight</h2>
+  <h2>Find a Flight</h2>
 
-<%= form_tag flights_index_path, method: :get do %>
-  <%= label_tag :departing_airport_id, "Departing From:" %>
-  <div class="select">
-    <%= select_tag(:departing_airport_id, options_for_select(@airport_options, params[:departing_airport_id])) %>
-    <span class="focus"></span>
-  </div>
+  <%= form_tag flights_index_path, method: :get do %>
+    <%= label_tag :departing_airport_id, "Departing From:" %>
+    <div class="select">
+      <%= select_tag(:departing_airport_id, options_for_select(@airport_options, params[:departing_airport_id])) %>
+      <span class="focus"></span>
+    </div>
 
-  <%= label_tag :arriving_airport_id, "Arriving At:" %>
-  <div class="select">
-    <%= select_tag(:arriving_airport_id, options_for_select(@airport_options, params[:arriving_airport_id])) %>
-    <span class="focus"></span>
-  </div>
+    <%= label_tag :arriving_airport_id, "Arriving At:" %>
+    <div class="select">
+      <%= select_tag(:arriving_airport_id, options_for_select(@airport_options, params[:arriving_airport_id])) %>
+      <span class="focus"></span>
+    </div>
 
-  <%= label_tag :num_passengers, "Number of Passengers:" %>
-  <div class="select">
-    <%= select_tag(:num_passengers, options_for_select(1..4, params[:num_passengers])) %>
-    <span class="focus"></span>
-  </div>
+    <%= label_tag :num_passengers, "Number of Passengers:" %>
+    <div class="select">
+      <%= select_tag(:num_passengers, options_for_select(1..4, params[:num_passengers])) %>
+      <span class="focus"></span>
+    </div>
 
-  <%= label_tag :travel_date, "Date:" %>
-  <div class="select">
-    <%= select_tag(:travel_date, options_for_select(@date_options, params[:travel_date])) %>
-    <span class="focus"></span>
-  </div>
+    <%= label_tag :travel_date, "Date:" %>
+    <div class="select">
+      <%= select_tag(:travel_date, options_for_select(@date_options, params[:travel_date])) %>
+      <span class="focus"></span>
+    </div>
 
-  <%= submit_tag "Search", :name => nil %>
-<% end %>
+    <%= submit_tag "Search", :name => nil %>
+  <% end %>
 
-<% unless @flights.empty? %>
-  <div class="flights">
-    <h4>Available Flights:</h4>
-    <%= form_with url: "/bookings/new", method: :get do |form| %>
-      <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
-      <div class="flight__selection">
-        <% @flights.each do |flight| %>
-          <div class="radio__wrapper">
-            <%= radio_button_tag :flight_id, flight.id %> 
-            <%= label_tag "flight_id_#{flight.id}", 
-            "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}, flight time: #{flight.duration_formatted}" %>
-          </div>
-        <% end %>
-      </div>
-      <%= submit_tag "Book it", :name => nil %>
-    <% end %>
-  </div>
-<% end %>
+  <% unless @flights.empty? %>
+    <div class="flights">
+      <h4>Available Flights:</h4>
+      <%= form_with url: "/bookings/new", method: :get do |form| %>
+        <%= form.hidden_field :num_tickets, value: params[:num_passengers] %>
+        <div class="flight__selection">
+          <% @flights.each do |flight| %>
+            <div class="radio__wrapper">
+              <%= radio_button_tag :flight_id, flight.id %> 
+              <%= label_tag "flight_id_#{flight.id}", 
+              "#{flight.departing_from.code} - #{flight.arriving_at.code} on #{flight.time_formatted}, flight time: #{flight.duration_formatted}" %>
+            </div>
+          <% end %>
+        </div>
+        <%= submit_tag "Book it", :name => nil %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No matching flights were found.</p>
+  <% end %>
 </div>
