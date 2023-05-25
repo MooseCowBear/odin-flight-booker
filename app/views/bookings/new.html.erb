@@ -11,13 +11,13 @@
     <%= form.hidden_field :num_tickets, value: @num %>
     
       <%= form.fields_for :passengers do |sub_form| %>
-        <%= sub_form.label :name, "Name:" %>
-        <%= sub_form.text_field :name %>
-        
-        <%= sub_form.label :email, "Email:" %>
-        <%= sub_form.text_field :email %>
+        <div class="passenger__fields">
+          <%= sub_form.label :name, "Name:" %>
+          <%= sub_form.text_field :name %>
+          <%= sub_form.label :email, "Email:" %>
+          <%= sub_form.text_field :email %>
+        </div>
       <% end %>
-    
     <%= form.submit "Book it", :name => nil %>
   <% end %>
 </div>
