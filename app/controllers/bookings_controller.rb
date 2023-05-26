@@ -8,10 +8,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    if @booking.passengers.size != @booking.num_tickets
-      flash[:alert] = "Each passenger needs a name and an email."
-      redirect_to new_booking_path(:flight_id => params[:booking][:flight_id], :num_tickets => params[:booking][:num_tickets])
-    elsif @booking.save
+    if @booking.save
       flash[:notice] = "Your flight has been booked!"
       redirect_to booking_path(@booking.id)
     else
