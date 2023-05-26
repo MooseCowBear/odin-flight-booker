@@ -1,11 +1,29 @@
 # Flight Booker
 
-This is a solution to the Flight Booker project from the Odin Project's Rails path. 
+This is a solution to the [Flight Booker](https://www.theodinproject.com/lessons/ruby-on-rails-flight-booker) project from the [Odin Project's](https://www.theodinproject.com/) Rails path. 
 
-## Feautres
+## Features
 
-A nested form that makes use of #accepts_nested_attributes_for. 
+A nested form that makes use of #accepts_nested_attributes_for that creates all of the passengers associated with a booking at once. 
 
 ## The database
 
+![alt text](readme_resources/uml.jpg "uml diagram of databases")
 
+## Screenshots
+
+The home page.
+
+![alt text](readme_resources/home.png "home page")
+
+After a flight search has occurred. 
+
+![alt text](readme_resources/home_with_flight_choices.png "home page")
+
+The new booking page.
+
+![alt text](readme_resources/bookings_new.png "booking page")
+
+The page loaded once a user has created a successful booking. 
+
+![alt text](readme_resources/booking_show.png "booking show page")
