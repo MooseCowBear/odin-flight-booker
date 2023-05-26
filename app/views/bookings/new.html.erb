@@ -6,7 +6,6 @@
 
   <h3>Please enter passenger information:</h3>
   <%= form_with model: @booking do |form| %>
-    <% render 'shared/error', element: @booking %>
     <%= form.hidden_field :flight_id, value: @flight.id %>
     <%= form.hidden_field :num_tickets, value: @num %>
     
@@ -15,7 +14,7 @@
           <%= sub_form.label :name, "Name:"%>
           <%= sub_form.text_field :name, required: true %>
           <%= sub_form.label :email, "Email:" %>
-          <%= sub_form.text_field :email, required: true %>
+          <%= sub_form.email_field :email, required: true %>
         </div>
       <% end %>
     <%= form.submit "Book it", :name => nil %>
