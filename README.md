@@ -8,22 +8,22 @@ A nested form that makes use of #accepts_nested_attributes_for that creates all 
 
 ## The database
 
-![alt text](readme_resources/uml.jpg "uml diagram of databases")
+![alt text](readme_assets/uml.jpg "uml diagram of databases")
 
 ## Screenshots
 
 The home page.
 
-![alt text](readme_resources/home.png "home page")
+![alt text](readme_assets/home.png "home page")
 
 After a flight search has occurred. 
 
-![alt text](readme_resources/home_with_flight_choices.png "home page")
+![alt text](readme_assets/home_with_flight_choices.png "home page")
 
 The new booking page.
 
-![alt text](readme_resources/bookings_new.png "booking page")
+![alt text](readme_assets/bookings_new.png "booking page")
 
 The page loaded once a user has created a successful booking. 
 
-![alt text](readme_resources/booking_show.png "booking show page")
+![alt text](readme_assets/booking_show.png "booking show page")
