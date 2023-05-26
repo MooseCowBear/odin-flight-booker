@@ -62,7 +62,3 @@ pairs.each do |p|
     end
   end
 end
-
-Booking.create!(flight_id: 1)
-Passenger.create!(name: "test passenger", email: "test@test.com", booking_id: 1)
-Passenger.create!(name: "second test passenger", email: "test2@test.com", booking_id: 1)
