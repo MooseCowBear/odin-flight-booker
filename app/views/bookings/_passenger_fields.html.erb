@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <div class="passenger__fields">
+    <%= sub_form.hidden_field :_destroy %>
+    <%= sub_form.label :name, "Name:"%>
+    <%= sub_form.text_field :name %>
+    <%= sub_form.label :email, "Email:" %>
+    <%= sub_form.email_field :email %>
+    <% if removable %>
+      <small>
+          <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+      </small>
+    <% end %>
+  </div>
+</div>

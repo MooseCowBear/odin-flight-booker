@@ -9,14 +9,22 @@
     <%= form.hidden_field :flight_id, value: @flight.id %>
     <%= form.hidden_field :num_tickets, value: @num %>
     
-      <%= form.fields_for :passengers do |sub_form| %>
-        <div class="passenger__fields">
-          <%= sub_form.label :name, "Name:"%>
-          <%= sub_form.text_field :name, required: true %>
-          <%= sub_form.label :email, "Email:" %>
-          <%= sub_form.email_field :email, required: true %>
-        </div>
-      <% end %>
+    <%= form.fields_for :passengers do |passenger| %>
+      <%= render "passenger_fields", sub_form: passenger, removable: false %>
+    <% end %>
+
+    <div data-controller="nested-form">
+      <template data-nested-form-target="template">
+        <%= form.fields_for :passengers, Passenger.new, child_index: "TEMPLATE_RECORD" do |passenger| %>
+          <%= render "passenger_fields", sub_form: passenger, removable: true %>
+        <% end %>
+      </template>
+
+      <div data-nested-form-target="add_item">
+        <%= link_to "Add Passenger", "#", data: { action: "nested-form#add_association" } %>
+      </div>
+    </div>
+  
     <%= form.submit "Book it", :name => nil %>
   <% end %>
 </div>
