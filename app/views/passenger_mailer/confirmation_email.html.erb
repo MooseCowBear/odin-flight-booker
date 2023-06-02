@@ -3,11 +3,13 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>Hello, <%= @passenger.name %>!</h1>
-    <p>
-      Your flight from <%= @booking.flight.departing_from.name %> to <%= @booking.flight.arriving_at.name %> on <%= @booking.flight.time_formatted %> has been booked.
-    </p>
-    <p>Thank you for flying with us!</p>
+  <body style="font-family:system-ui;display:flex;flex-direction:column;align-items:center;background:linear-gradient(#51cfcb, #a3e7e5, #ebfffe);background-repeat:no-repeat;min-height:100vh;margin:100px">
+    <main style="max-width:60ch;background-color:rgba(251, 250, 245, 0.7);padding:2rem;border-radius:15px">
+      <h1>Hello, <%= @passenger.name.capitalize %>!</h1>
+      <p>
+        Your flight from <strong><%= @booking.flight.departing_from.name %></strong> to <strong><%= @booking.flight.arriving_at.name %></strong> on <strong><%= @booking.flight.time_formatted %></strong> has been booked.
+      </p>
+      <p>Thank you for flying with us!</p>
+    </main>
   </body>
 </html>

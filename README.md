@@ -6,9 +6,9 @@ This is a solution to the [Flight Booker](https://www.theodinproject.com/lessons
 
 A nested form that makes use of #accepts_nested_attributes_for that creates all of the passengers associated with a booking at once. 
 
-### Update
+The form uses Stimulus to allow adding and removing of passenger fields from a booking form in case the user changes their mind about how many tickets they would like. 
 
-Form now uses Stimulus to allow adding and removing of passenger fields from booking form in case user changes their mind about how many tickets they would like. 
+Confirmation emails are sent to each passenger when a booking is made. 
 
 ## The database
 
@@ -31,3 +31,7 @@ The updated booking page.
 The page loaded once a user has created a successful booking. 
 
 ![alt text](readme_assets/booking_show.png "booking show page")
+
+A sample confirmation email:
+
+![alt text](readme_assets/confirmation_email.png "confirmation email")
