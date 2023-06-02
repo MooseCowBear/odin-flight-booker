@@ -10,7 +10,11 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.num_tickets = @booking.passengers.length #update to be whatever the new passenger count is
+
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.confirmation_email(passenger, @booking).deliver_now
+      end
       flash[:notice] = "Your flight has been booked!"
       redirect_to booking_path(@booking.id)
     else
